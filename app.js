@@ -96,14 +96,7 @@ function convertFahrToCelsius(temperature) {
   return temperature;
 }
 
-let obj = convertFahrToCelsius("0");
-//  obj = convertFahrToCelsius('')
-// obj = convertFahrToCelsius("true")
-// obj = convertFahrToCelsius(true)
-// obj = convertFahrToCelsius([1,2,4])
-//  obj = convertFahrToCelsius({ temp: 0 });
-//  obj = convertFahrToCelsius({ temp: 0 },{value:7});
-console.log(obj);
+
 
 // ==========================
 // =================
@@ -123,7 +116,7 @@ console.log(obj);
 
 function checkYuGiOh(int) {
   var result = [];
-  let err;
+
   let args = Array.prototype.slice.call(arguments);
   // we check that the function is given a parameter and its not empty
   if (args.length == 0) {
@@ -167,9 +160,7 @@ if (Number.isNaN(int)) {
     console.log(checkIfArray(int));
     return checkIfArray(int);
   }
-    // if (Array.isArray(int)) {
-    //   return ` ${JSON.stringify(int)} is not a valid number but a/an array.`;
-    // }
+
   if (checkForOject(int, args)) {
     console.log(checkForOject(int, args));
     return checkForOject(int, args);
@@ -226,8 +217,7 @@ if (Number.isNaN(int)) {
   return result;
 }
 
-let res = checkYuGiOh("2");
-console.log(res);
+
 
 // the following are helper functions to check the various errors
 function checkStringToNumber(val) {
@@ -249,16 +239,13 @@ function checkStringToNumber(val) {
     if (Number.isNaN(val)) {
       console.log(`${JSON.stringify(val)} is a not a valid Number but a/an NaN`);
       return `${val} is a not a valid Number but a/an NaN`;
-      // but if the number is a number after converting the string then we go ahead to convert the val to celsius
+
     }
   }else if (typeof val === "number") {
-    // val = ((val - 32) * 5) / 9;
-    // val = Number(val.toFixed(4));
-    // console.log(val);
     return "is Number";
   }
 }
-// console.log(checkStringToNumber("0"))
+
 
 function checkForOject(val, args) {
   if (
@@ -281,7 +268,7 @@ function checkForOject(val, args) {
     }
     return res;
   }
-  // return "number";
+
 }
 
 function isObject(obj) {
