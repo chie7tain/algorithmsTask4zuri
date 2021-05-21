@@ -1,19 +1,13 @@
-// 1. Write a function named "convertFahrToCelsius" that takes a single parameter and converts it to celsius.
+import {
+  checkForOject,
+  checkIfBoolean,
+  checkIfArray,
+  checkStringToNumber,
+  isBoolean,
+  isObject,
+} from "./helpers.js";
 
-// Note:
-
-//     - Round up your answers to 4 decimal places (hint: use the toFixed method)
-//     - C = (F - 32) x 5/9; (e.g 0deg F = -17.7778 deg C)
-//     - if the parameter passed is not a number or a string that can be converted to a valid number, return a string with the format below:
-//         `${parameter} is not a valid number but a/an ${parameter's type}.`
-
-// You can use the following cases as guides:
-
-//     - convertFahrToCelsius(0) should return `-17.7778`
-//     - convertFahrToCelsius("0") should return `-17.7778`
-//     - convertFahrToCelsius([1,2,3]) should return `[1,2,3] is not a valid number but a/an array.`
-//     - convertFahrToCelsius({temp: 0}) should return `{temp: 0} is not a valid number but a/an object.`
-
+// Question 1. write a convertFahrToCelsius function
 function convertFahrToCelsius(temperature) {
   // we first create an array using the function arguments object which contains the list of arguments passed into the function
   let args = Array.prototype.slice.call(arguments);
@@ -98,21 +92,9 @@ function convertFahrToCelsius(temperature) {
 
 
 
-// ==========================
-// =================
-// 2. Write a function named "checkYuGiOh" that takes a number, n, as an argument, creates an array of numbers from 1 to n and replaces multiples of 2, 3, and 5 with "yu", "gi" and "oh", then returns the resulting array.
-
-// Note:
-
-//     - for numbers that have multiple factors, use hyphens as separators
-//     e.g 10 === "yu-oh", 30 === "yu-gi-oh"
-//     - perform checks on your input and return `invalid parameter: ${parameter}` if an invalid parameter - i.e. a string that can't be converted to a number or another data type - is passed.
-
-// Use the following cases as guides:
-
-//     - checkYuGiOh(10) should return [1, "yu", "gi", "yu", "oh", "yu-gi", 7, "yu", "gi", "yu-oh"]
-//     - checkYuGiOh("5") should return [1, "yu", "gi", "yu", "oh"]
-//     - checkYuGiOh("fizzbuzz is meh") should return `invalid parameter: "fizzbuzz is meh"`
+// =========================================================================================
+// =========================================================================================
+// Question 2. write a checkYuGiOh function
 
 function checkYuGiOh(int) {
   var result = [];
@@ -219,82 +201,3 @@ if (Number.isNaN(int)) {
 
 
 
-// the following are helper functions to check the various errors
-function checkStringToNumber(val) {
-  if (typeof val === "string" && val !== "") {
-    let str = typeof val;
-
-    // we check if the string can be converted to a number by using the modulus operator depending on the return value we return the appropriate error message
-    let test = val % 2;
-
-    if (!Number.isInteger(test)) {
-      console.log(
-        `${val} is not a valid number but a/an ${typeof val}`
-      );
-      return `${JSON.stringify(val)} is not a valid number but a/an ${typeof val}`;
-    } else {
-      val = Number(val);
-    }
-    // this line checks if after converting the string and its not a number we check and return the correct error message
-    if (Number.isNaN(val)) {
-      console.log(`${JSON.stringify(val)} is a not a valid Number but a/an NaN`);
-      return `${val} is a not a valid Number but a/an NaN`;
-
-    }
-  }else if (typeof val === "number") {
-    return "is Number";
-  }
-}
-
-
-function checkForOject(val, args) {
-  if (
-    isObject(val) == "object" &&
-    typeof val != "number" &&
-    typeof val != "string"
-  ) {
-    let res = "";
-    if (args.length == 1) {
-      res = `${JSON.stringify(
-        args[0]
-      )} is not a valid number but a/an ${typeof val}`;
-      return res;
-    }
-    // we create a for loop to run through the arguments passed into the function just in case the objects are more than one
-    for (let i = 0; i < args.length; i++) {
-      let key = Object.keys(args[i]);
-      let values = Object.values(args[i]);
-      res += `{${key} : ${values}} is not a valid number but a/an object.`;
-    }
-    return res;
-  }
-
-}
-
-function isObject(obj) {
-  if (
-    (Object.prototype.toString(obj) === "[object Object]" && obj != null) ||
-    obj != "null"
-  ) {
-    return `object`;
-  }
-}
-
-function checkIfArray(val) {
-  if (Array.isArray(val)) {
-    return ` ${JSON.stringify(val)} is not a valid number but a/an array.`;
-  }
-}
-function checkIfBoolean(val) {
-  if (isBoolean(val) === "boolean" && val != "0") {
-    return `${JSON.stringify(
-      val
-    )} is not a valid number but a/an ${typeof val}`;
-  }
-  return false;
-}
-function isBoolean(val) {
-  if (val == true || val == false) {
-    return `boolean`;
-  }
-}
